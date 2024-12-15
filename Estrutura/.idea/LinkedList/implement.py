@@ -54,10 +54,10 @@ class Node:
         return self.key
 
 
-if __name__ == "__main__":
-    list = listaEncadeada("10")
-    list.add(Node("20"))
-    list.add(Node("12"))
-    list.add(Node("30"))
-
-    list.end_first()
+# if __name__ == "__main__":
+#     list = listaEncadeada("10")
+#     list.add(Node("20"))
+#     list.add(Node("12"))
+#     list.add(Node("30"))
+#
+#     list.end_first()
