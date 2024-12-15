@@ -1,29 +1,57 @@
 public class ContainsNearbyDuplicate {
-    public static void main(String[] args) {}
 
-    public boolean containsNearbyDuplicate(int[] nums, int k) {
+    public static void main(String[] args) {
 
-        int e = 0, d = nums.length -1;
+        System.out.println(containsNearbyDuplicate(new int[]{1,2,3,1,2,3}, 2));
+    }
 
-        while(e != nums.length -1){
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
 
-            if(e <= d){
-                e++;
-                d = nums.length -1;
-            }
+        int e = 0,d = nums.length -1, alvo = nums[e] , meio;
 
-            if(nums[e] == nums[d]){
+        int old_e = e;
+
+
+        while (e != nums.length - 1) {
+
+
+            meio = e + ((e - d) / 2); //Meu problema está aqui, ele não calcula o meior entre os valores corretament =
+
+
+            if(nums[meio] == alvo && e != meio) {
+
                 if(Math.abs(e-d) <= k){
+
                     return true;
+
                 }
+
             }
 
-            d --;
+            if(nums[meio] < alvo){
+
+                e = meio + 1;
+
+            }else if(nums[meio] > alvo){
+
+                d = meio - 1;
+
+            }
+
+            if(e == meio){
+
+                e = old_e + 1;
+                alvo = nums[e];
+                old_e++;
+                d = nums.length -1;
+
+            }
+
 
         }
 
         return false;
 
     }
-}
+
 }
