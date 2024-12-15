@@ -18,7 +18,7 @@ def binary_search(arr, n):
         ponteiro = int(((e + d) / 2))
         passos = passos + 1
         print("Passo - ", passos)
-        
+
         if(arr[ponteiro] == n):
             return ponteiro
 

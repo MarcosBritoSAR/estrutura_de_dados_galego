@@ -1,57 +1,57 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class ContainsNearbyDuplicate {
 
     public static void main(String[] args) {
 
-        System.out.println(containsNearbyDuplicate(new int[]{1,2,3,1,2,3}, 2));
+        System.out.println(containsNearbyDuplicateHashMap(new int[]{1,2,3,1,2,3}, 2));
     }
 
     public static boolean containsNearbyDuplicate(int[] nums, int k) {
 
-        int e = 0,d = nums.length -1, alvo = nums[e] , meio;
+        int e = 0, d = e + 1;
 
-        int old_e = e;
+        while (true) {
 
+            if(Math.abs(e - d) > k || d >= nums.length){
 
-        while (e != nums.length - 1) {
+                e ++;
+                d = e + 1;
 
+                if(e >= nums.length -1 ){
+                    return false;
+                }
+            }
 
-            meio = e + ((e - d) / 2); //Meu problema está aqui, ele não calcula o meior entre os valores corretament =
+            if( nums[e] == nums[d]){
 
-
-            if(nums[meio] == alvo && e != meio) {
-
-                if(Math.abs(e-d) <= k){
-
+                if(Math.abs(e - d) <= k){
                     return true;
-
                 }
 
             }
 
-            if(nums[meio] < alvo){
+            d ++;
 
-                e = meio + 1;
 
-            }else if(nums[meio] > alvo){
+        }
 
-                d = meio - 1;
+    }
 
+    public static boolean containsNearbyDuplicateHashMap(int[] nums, int k) {
+        Map<Integer,Integer> book = new HashMap<>();
+
+
+        for(int i = 0, valor; i< nums.length; i++){
+            valor = nums[i];
+            if(book.containsKey(valor) && (i - book.get(valor)) <= k){
+                return true;
             }
-
-            if(e == meio){
-
-                e = old_e + 1;
-                alvo = nums[e];
-                old_e++;
-                d = nums.length -1;
-
-            }
-
-
+            book.put(valor, i);
         }
 
         return false;
 
     }
-
 }
